@@ -102,36 +102,40 @@ Created on Tue Sep 17 08:40:27 2024
 #mahalla = "Quyi Rovuston"
 #tuman = "Davlatobod"
 #viloyat = "Namangan"
-print(f"{kocha} ko'cha, {mahalla} mahallasi, {tuman} tumani, {viloyat} viloyati")
-print("Iltimos, quyidagi ma'lumotlarni kiriting:")
-kocha = input("Ko'changiz?\n>>>")
-mahalla = input("Mahallangiz?\n>>>")
-tuman = input("Tumaningiz?\n>>>")
-viloyat = input("Viloyatingiz?\n>>>")
-print(f"Assalomu alekum,  {kocha.title()} ko'cha, {mahalla.title()} mahalla, {tuman.title()} tuman, {viloyat.title()} viloyat")
+#print(f"{kocha} ko'cha, {mahalla} mahallasi, {tuman} tumani, {viloyat} viloyati")
+#print("Iltimos, quyidagi ma'lumotlarni kiriting:")
+#kocha = input("Ko'changiz?\n>>>")
+#mahalla = input("Mahallangiz?\n>>>")
+#tuman = input("Tumaningiz?\n>>>")
+#viloyat = input("Viloyatingiz?\n>>>")
+#print(f"Assalomu alekum,  {kocha.title()} ko'cha, {mahalla.title()} mahalla, {tuman.title()} tuman, {viloyat.title()} viloyat")
 #print(kocha + " ko'chasi, " + mahalla + " mahallasi, " + \
      # tuman + " tumani, " + viloyat + " viloyati")
-manzil = f"{kocha} ko'chasi, {mahalla} mahallasi, {tuman} tumani, {viloyat} viloyati"
-print(manzil)
-print(manzil.upper())
-print(manzil.lower())
-print(manzil.title())
-print(manzil.capitalize())
-print(manzil.capitalize())
-
-  for (int i = 1; i <= 100; i++)
-  {
-    for (int j = 1; j <= 9; j++)
-      {
-        printf("%d x %d = %d\n", i, j, (i * j));
-      }
-    printf("\n");
-  }
-
-
-
+#manzil = f"{kocha} ko'chasi, {mahalla} mahallasi, {tuman} tumani, {viloyat} viloyati"
+#print(manzil)
+#print(manzil.upper())
+#print(manzil.lower())
+#print(manzil.title())
+#print(manzil.capitalize())
+#print(manzil.capitalize())
 
 
 #print('Hello World')
 #print('Hello \tWorld')
 #print('Hello \nWorld')
+
+
+
+#Sonlar (Sonlar)
+
+#a = 20
+#b = -30
+#c = a + b
+#print(c)
+
+# Kvadratning yuzini hisoblaymiz
+kvdrt_tmni = 20 # Kavdratning tomoni 20 ga teng
+kvdrt_yuzi = kvdrt_tmni**2 # Kvadrat yuzini hisoblaymiz
+print(kvdrt_yuzi)
+aholi_soni = 7_594_000_000 # o'zmizga qulay bo'lishi uchun shinday yozdik
+print("Yer kurrasida", aholi_soni, " ga yaqin odam yashaydi")
