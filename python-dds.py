@@ -139,3 +139,7 @@ kvdrt_yuzi = kvdrt_tmni**2 # Kvadrat yuzini hisoblaymiz
 print(kvdrt_yuzi)
 aholi_soni = 7_594_000_000 # o'zmizga qulay bo'lishi uchun shinday yozdik
 print("Yer kurrasida", aholi_soni, " ga yaqin odam yashaydi")
+ism = 'Jobir'
+yosh = 36
+xabar = ism + ' ' + yosh + ' yoshda'
+print(xabar)
