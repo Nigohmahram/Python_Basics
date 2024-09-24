@@ -133,13 +133,29 @@ Created on Tue Sep 17 08:40:27 2024
 #c = a + b
 #print(c)
 
-# Kvadratning yuzini hisoblaymiz
-kvdrt_tmni = 20 # Kavdratning tomoni 20 ga teng
-kvdrt_yuzi = kvdrt_tmni**2 # Kvadrat yuzini hisoblaymiz
-print(kvdrt_yuzi)
-aholi_soni = 7_594_000_000 # o'zmizga qulay bo'lishi uchun shinday yozdik
-print("Yer kurrasida", aholi_soni, " ga yaqin odam yashaydi")
-ism = 'Jobir'
-yosh = 36
-xabar = ism + ' ' + yosh + ' yoshda'
-print(xabar)
+
+#x, y, z, = 10, 1.5, -75
+
+import turtle as tur
+import colorsys as cs
+tur.setup(800, 800)
+tur.speed(10)
+tur.tracer(20)
+tur.width(3)
+tur.bgcolor("black")
+for j in range(225):
+    for i in range(15): 
+        tur.color(cs.hsv_to_rgb(i/15, j/25, 1))
+        tur.right(90)
+        tur.circle(200-j*4,90)
+        tur.left(90)
+        tur.circle(200-j*4,90)
+        tur.right(180)
+        tur.circle(50,24)
+        tur.hideturtle()
+        tur.done()
+        
+
+
+
+
