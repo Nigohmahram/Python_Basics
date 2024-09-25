@@ -136,24 +136,76 @@ Created on Tue Sep 17 08:40:27 2024
 
 #x, y, z, = 10, 1.5, -75
 
-import turtle as tur
-import colorsys as cs
-tur.setup(800, 800)
-tur.speed(10)
-tur.tracer(20)
-tur.width(3)
-tur.bgcolor("black")
-for j in range(225):
-    for i in range(15):
-        tur.color(cs.hsv_to_rgb(i/15, j/25, 1))
-        tur.right(90)
-        tur.circle(200-j*4,90)
-        tur.left(90)
-        tur.circle(200-j*4,90)
-        tur.right(180)
-        tur.circle(50,24)
-        tur.hideturtle()
-        tur.done()
+
+
+
+
+
+
+
+
+import sys
+import unittest
+
+sys.path.append("..")
+sys.path.append(".")
+import modsecurity
+
+
+class TestStringMethods(unittest.TestCase):
+
+  def test_version(self):
+      self.assertRegexpMatches(str(modsecurity.ModSecurity().whoAmI()), ".*ModSecurity.*")
+
+  def test_load_rules(self):
+      rules = modsecurity.Rules()
+      ret = rules.load('SecRule ARGS_POST|XML:/* "(\n|\r)" "id:1,deny,phase:2"')
+      self.assertEqual(ret, 1)
+      ret = rules.load("""
+        SecRule ARGS_POST|XML:/* "(\n|\r)" "id:1,deny,phase:2"
+        SecRule ARGS_POST|XML:/* "(\n|\r)" "id:2,deny,phase:2"
+      """)
+      self.assertEqual(ret, 2)
+      ret = rules.getRulesForPhase(3)
+      self.assertEqual(ret.size(), 3)
+
+  def test_load_bad_rules(self):
+      rules = modsecurity.Rules()
+      ret = rules.load('SecRule ARGS_POST|XML:/* "(\n|\r)" "deny,phase:2"')
+      self.assertEqual(ret, -1)
+      ret = rules.getParserError()
+      self.assertRegexpMatches(ret, "Rules must have an ID.*")
+
+if __name__ == '__main__':
+    unittest.main()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
  
