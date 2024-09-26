@@ -167,14 +167,46 @@ Created on Tue Sep 17 08:40:27 2024
 #print("Siz", 2024 - t_yil,"-da tug'ulgansiz")
 
 
-s_1 = int(input("Birinchi sonni kiriting?\n>>>>"))
-s_2 = int(input("ikkinchi sonni kiriting?\n>>>>"))
-print(f"{s_1} + {s_2 } =", s_1 + s_2 )
-print(f"{s_1} - {s_2 } =", s_1 - s_2 )
-print(f"{s_1} * {s_2 } =", s_1 * s_2 )
-print(f"{s_1} / {s_2 } =", s_1 / s_2 )
+#s_1 = int(input("Birinchi sonni kiriting?\n>>>>"))
+#s_2 = int(input("ikkinchi sonni kiriting?\n>>>>"))
+#print(f"{s_1} + {s_2 } =", s_1 + s_2 )
+#print(f"{s_1} - {s_2 } =", s_1 - s_2 )
+#print(f"{s_1} * {s_2 } =", s_1 * s_2 )
+#print(f"{s_1} / {s_2 } =", s_1 / s_2 )
 
 
+
+#Lists (Ro'yxatlar)
+
+
+mevalar = ['olma','Anjir','bexi','Gilos','Siliva','shaftoli',"o'rik"]
+narxlar = [12000, 18000, 10900, 22000]
+sonlar = ['bir', 'ikki', 35, 46, 58]
+mevalar[3] = 'banan'
+print(mevalar[3])
+mevalar.append('Sham')# ro'yxatni faqat oxiriga qo'shadi
+mevalar.insert(0, 'yabloko') #ro'yxatni index orqali xoxlagan joyiga qo'shish mumkin
+print(mevalar)
+
+cars = []
+cars.append('lasetti')
+cars.append('malibu')
+cars.append('tracker')
+del cars[0] #objectni olib tashlash
+cars.insert(0, 'nexia 3')
+print(cars)
+hayvonlar = ['it', 'mushuk', 'sigir', 'quyon', 'qo\'y', 'mushuk']
+hayvonlar.remove('mushuk')# faqat boshidagi e'lementni olib tashlaydi
+print(hayvonlar)
+
+bozorlik = ['un', 'banan', 'piyoz']
+#oldim = bozorlik.pop(2)
+
+#print('Men ' + oldim + ' sotib oldim' )
+#print('olinmagan maxsulotlar:',  bozorlik)
+
+maxsulot2 = bozorlik.pop()
+print(maxsulot2)
 
 
 
