@@ -128,56 +128,57 @@ Created on Tue Sep 17 08:40:27 2024
 
 #Sonlar (Sonlar)
 
-#a = 20
 #b = -30
-#c = a + b
+#temp = 36.6
 #print(c)
 
 
+#aholi_soni = 7_596_376_567
+#print(aholi_soni)
+
 #x, y, z, = 10, 1.5, -75
+ 
+#c = a*b
+ 
+#d = 100//2
+
+#radius = 20
+#PI = 3.14159
+#diametr = 2*radius
+#print("Aylana uzunligi =",PI*diametr )
+      
+      
+#1ism = "Jobir"
+#yosh = 36
+#xabar = ism + ' ' +  str(yosh) + ' ' + 'yoshda'
+#print(xabar)
+
+#t_yil = int(input("Tug'ulgan yilngizni kiriting: \n>>>"))
+#yosh = 2024 - (t_yil)
+#print("Siz", yosh, "yoshda ekansiz !")
+
+
+#xisob = int(input("Istalgan son kiriting!\n>>>"))
+#print(xisob,'ning kvadrati', xisob**2, 'ga teng' )
+#print(xisob,'ning kubi', xisob**3, 'ga teng' )
+
+
+#t_yil = int(input("Yoshingizni kiriting:\n>>>"))
+#print("Siz", 2024 - t_yil,"-da tug'ulgansiz")
+
+
+s_1 = int(input("Birinchi sonni kiriting?\n>>>>"))
+s_2 = int(input("ikkinchi sonni kiriting?\n>>>>"))
+print(f"{s_1} + {s_2 } =", s_1 + s_2 )
+print(f"{s_1} - {s_2 } =", s_1 - s_2 )
+print(f"{s_1} * {s_2 } =", s_1 * s_2 )
+print(f"{s_1} / {s_2 } =", s_1 / s_2 )
 
 
 
 
 
 
-
-
-
-import sys
-import unittest
-
-sys.path.append("..")
-sys.path.append(".")
-import modsecurity
-
-
-class TestStringMethods(unittest.TestCase):
-
-  def test_version(self):
-      self.assertRegexpMatches(str(modsecurity.ModSecurity().whoAmI()), ".*ModSecurity.*")
-
-  def test_load_rules(self):
-      rules = modsecurity.Rules()
-      ret = rules.load('SecRule ARGS_POST|XML:/* "(\n|\r)" "id:1,deny,phase:2"')
-      self.assertEqual(ret, 1)
-      ret = rules.load("""
-        SecRule ARGS_POST|XML:/* "(\n|\r)" "id:1,deny,phase:2"
-        SecRule ARGS_POST|XML:/* "(\n|\r)" "id:2,deny,phase:2"
-      """)
-      self.assertEqual(ret, 2)
-      ret = rules.getRulesForPhase(3)
-      self.assertEqual(ret.size(), 3)
-
-  def test_load_bad_rules(self):
-      rules = modsecurity.Rules()
-      ret = rules.load('SecRule ARGS_POST|XML:/* "(\n|\r)" "deny,phase:2"')
-      self.assertEqual(ret, -1)
-      ret = rules.getParserError()
-      self.assertRegexpMatches(ret, "Rules must have an ID.*")
-
-if __name__ == '__main__':
-    unittest.main()
 
 
 
