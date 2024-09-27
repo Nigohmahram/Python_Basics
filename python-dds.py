@@ -137,17 +137,17 @@ Created on Tue Sep 17 08:40:27 2024
 #print(aholi_soni)
 
 #x, y, z, = 10, 1.5, -75
- 
+
 #c = a*b
- 
+
 #d = 100//2
 
 #radius = 20
 #PI = 3.14159
 #diametr = 2*radius
 #print("Aylana uzunligi =",PI*diametr )
-      
-      
+
+
 #1ism = "Jobir"
 #yosh = 36
 #xabar = ism + ' ' +  str(yosh) + ' ' + 'yoshda'
@@ -178,67 +178,158 @@ Created on Tue Sep 17 08:40:27 2024
 
 #Lists (Ro'yxatlar)
 
+#mevalar = ['olma','Anjir','bexi','Gilos','Siliva','shaftoli',"o'rik"]
 
-mevalar = ['olma','Anjir','bexi','Gilos','Siliva','shaftoli',"o'rik"]
-narxlar = [12000, 18000, 10900, 22000]
-sonlar = ['bir', 'ikki', 35, 46, 58]
-mevalar[3] = 'banan'
-print(mevalar[3])
-mevalar.append('Sham')# ro'yxatni faqat oxiriga qo'shadi
-mevalar.insert(0, 'yabloko') #ro'yxatni index orqali xoxlagan joyiga qo'shish mumkin
-print(mevalar)
+#print('Birinchi meva:', mevalar[0])
+#print('Ikkinchi meva:', mevalar[1])
+#print('Birinchi meva:', mevalar[0].title())
+#print('Ikkinchi meva:', mevalar[1].upper())
+#narxlar = [12000, 18000, 10900, 22000]
 
-cars = []
-cars.append('lasetti')
-cars.append('malibu')
-cars.append('tracker')
-del cars[0] #objectni olib tashlash
-cars.insert(0, 'nexia 3')
-print(cars)
-hayvonlar = ['it', 'mushuk', 'sigir', 'quyon', 'qo\'y', 'mushuk']
-hayvonlar.remove('mushuk')# faqat boshidagi e'lementni olib tashlaydi
-print(hayvonlar)
+#print(narxlar[0] + narxlar[1])
+#sonlar = ['bir', 'ikki', 35, 46, 58]
+#ismlar = ['Botir', 'Azam', 'Davron', 'Oybek', 'Bobir']
+#mevalar[3] = 'banan'
+#print(mevalar[3])
+#mevalar.append('Sham')# ro'yxatni faqat oxiriga qo'shadi
+#mevalar.insert(0, 'yabloko') #ro'yxatni index orqali xoxlagan joyiga qo'shish mumkin
+#print(mevalar)
 
-bozorlik = ['un', 'banan', 'piyoz']
+#cars = []
+#cars.append('lasetti')
+#cars.append('malibu')
+#cars.append('tracker')
+#del cars[0] #objectni olib tashlash
+#cars.insert(0, 'nexia 3')
+#print(cars)
+#hayvonlar = ['it', 'mushuk', 'sigir', 'quyon', 'qo\'y', 'mushuk']
+#hayvonlar.remove('mushuk')# faqat boshidagi e'lementni olib tashlaydi
+#print(hayvonlar)
+
+#bozorlik = ['un', 'banan', 'piyoz']
 #oldim = bozorlik.pop(2)
 
 #print('Men ' + oldim + ' sotib oldim' )
 #print('olinmagan maxsulotlar:',  bozorlik)
 
-maxsulot2 = bozorlik.pop()
-print(maxsulot2)
+#maxsulot2 = bozorlik.pop()
+#print(maxsulot2)
 
 
+#car_models = ['Toyota', 'GM', 'Volvo', 'BMW', 'Hyundai', 'KIA', 'VolksWagen']
+#print(car_models[-1])
+
+#narxlar = [12000, 18000, 10900, 22000]
+#narxlar[0] = 13000
+#narxlar[1] = 14000
+#narxlar[2] = 15000
+#narxlar[3] = 16000
+#narxlar.append(17000)
+#print(narxlar)
 
 
+#cars = []
+
+#cars.append('BMW')
+#cars.append('GM')
+#cars.append('GM')
+#cars.append('Morning')
+#cars.append('Damas')
+#cars.insert(0, 'Hyundai')
+#cars.insert(1, 'AUDI')
+#cars.insert(2, 'Malibu')
+#del cars[1]
+#del cars[2]
+#del cars[3]
+#cars.append('GM')
+#cars.remove('Hyundai')
+#cars.remove('GM') # Agarda ikkita birxil ma'lumot bo'lsa faqat bittasini olib tashlaydi
+#print(cars)
+#car = cars.pop(2)
+#car1 = cars.pop()#Agar.pop()metodida indeks berilmasa, ro'yxatdan o'xirgi qiymat sug'urib olinadi.
+#print('Men ' + car + ' sotib oldim')
+#print('Men ' + car1 + ' sotib oldim')
+#print('Qolganlari', cars,'ni keyinroq sotib olaman' )
+
+#ismlar = ['Abror', 'Bekzod', 'Oybek']
+#ism1 = ismlar.pop(0)
+#ism2 = ismlar.pop(0)
+#ism3 = ismlar.pop()
+#print('Salom ' + ism1 + ' bugun choyxona bormi?')
+#print(ism2 + ' choyxonaga boramizmi?')
+#print(ism3 + ' bugun Counter Strike bormi?')
+
+#sonlar = [22, -58.2, 34.0, 67, 1983, 123_456_678_000, 112.4]
+#sonlar.append(12)
+#sonlar.insert(1, 23)
+#del sonlar[0]
+#sonlar.remove(112.4)
+#son = sonlar.pop(3)
+#print(son)
+#print(sonlar)
+#print(sonlar[0] + sonlar[3])
+
+#t_shaxslar = ['Imom Al Boxoriy', 'Amir Temur', 'Umar Ibn Hattob']
+#z_shaxlar = ['DR Zakir Naik', 'Bill Gates']
+#print(f"Men tarixiy shaxslardan {t_shaxslar.pop(0)} bilan,\nzamonaviy shaxslardan esa {z_shaxlar.pop(0)} bilan, \n suhbat qilishni istardim ")
 
 
+friends = []
+mehmonlar = []
+friends.append('Javohir')
+friends.append('Davron')
+friends.append('Oybek')
+friends.append('Bobir')
+friends.append('Muhammad')
+friends.append('Naimboy')
+friends.append('Akbarali')
+friends.remove('Akbarali')
+friends.remove('Oybek')
+friends.remove('Muhammad')
+friends.insert(0, 'NurMuhammad')
+friends.insert(2, 'Maruf')
+friends.append('Ahmadjon')
+
+mehmonlar.append(friends.pop(1))
+mehmonlar.append(friends.pop(0))
+mehmonlar.append(friends.pop(1))
+mehmonlar.append(friends.pop(2))
+print("Kelmaganlar", friends)
+print('Kelgan mehmonlar:', mehmonlar)
+#sonlar = [22, -58.2, 34.0, 67, 1983, 123_456_678_000, 112.4]
+#sonlar.append(12)
+#sonlar.insert(1, 23)
+#del sonlar[0]
+#sonlar.remove(112.4)
+#son = sonlar.pop(3)
+#print(son)
+#print(sonlar)
+#print(sonlar[0] + sonlar[3])
+
+#t_shaxslar = ['Imom Al Boxoriy', 'Amir Temur', 'Umar Ibn Hattob']
+#z_shaxlar = ['DR Zakir Naik', 'Bill Gates']
+#print(f"Men tarixiy shaxslardan {t_shaxslar.pop(0)} bilan,\nzamonaviy shaxslardan esa {z_shaxlar.pop(0)} bilan, \n suhbat qilishni istardim ")
 
 
+friends = []
+mehmonlar = []
+friends.append('Javohir')
+friends.append('Davron')
+friends.append('Oybek')
+friends.append('Bobir')
+friends.append('Muhammad')
+friends.append('Naimboy')
+friends.append('Akbarali')
+friends.remove('Akbarali')
+friends.remove('Oybek')
+friends.remove('Muhammad')
+friends.insert(0, 'NurMuhammad')
+friends.insert(2, 'Maruf')
+friends.append('Ahmadjon')
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
+mehmonlar.append(friends.pop(1))
+mehmonlar.append(friends.pop(0))
+mehmonlar.append(friends.pop(1))
+mehmonlar.append(friends.pop(2))
+print("Kelmaganlar", friends)
+print('Kelgan mehmonlar:', mehmonlar)
