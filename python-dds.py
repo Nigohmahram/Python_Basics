@@ -313,23 +313,225 @@ Created on Tue Sep 17 08:40:27 2024
 #print("Kelmaganlar", friends)
 #print('Kelgan mehmonlar:', mehmonlar)
 
+#Ro'yxatni tartiblash
+
+#cars = ['Toyota', 'GM','Audi','Volvo', 'BMW', 'Hyundai', 'KIA', 'VolksWagen']
+#carss = ['bmw','mercedes benz', 'volvo', 'gm', 'tesla', 'audi']
+#carss.sort(reverse=True)
+#cars.sort() # Alifbo tartibida joylanadi
+#cars.sort(reverse=True) #ohiridan boshiga alifbo tartibida
+#t_cars = sorted(cars) #Asl ro'yxatga tegmagan xolda tartiblash
+#t_cars = sorted(cars, reverse=True) #Ro'yxatni
+#print(t_cars)
+#print(cars)
+#print(carss)
+
+#mehmonlar = ['Odil', 'Hamid', 'Temur', 'Avazbek', 'Farruh', 'Shamsiddin']
+#print("Sorted() qaytargan ro'yxat:", sorted(mehmonlar))
+#print(sorted(mehmonlar, reverse=True))
+#print("Asl ro'yxat o'zgarmas qoldi:", mehmonlar)
+#mehmonlar.sort()
+#print(mehmonlar)
+
+#ages = [12, 64, 36, 487, 52]
+#ages.sort()
+#print(ages)
+#print(sorted(ages, reverse=True))
+
+#sonlar = list(range(0,10))#Diqqat! E'tibor qiling range()funktsiyasi ikkinchi indeksdan bitta avval to'xtaydi.
+#print(sonlar)
+#juft_sonlar = list(range(0,10,2))
+#toq_sonlar = list(range(1, 20, 2 ))
+#sons = list(range(10))
+#print(sons)
+#print(juft_sonlar)
+#print(toq_sonlar)
+
+#narxlar = [12000, 18000, 25000, 11000, 8000]
+#arzon = min(narxlar)
+#qimmat = max(narxlar)
+#jami = sum(narxlar)
+#print("Eng arzon narxlar:", arzon,  "\nEng qimmat narxlar:", qimmat,  "\nJami:", jami )
+#fruits = ['banan', 'pear', 'apple', 'lemon', 'watermelon']
+#fruits.reverse()#ro'yxatni ortidan oldiga qaytarish
+#print('Element soni:', len(fruits))
+#print(fruits)
+
+#cars = ['bmw','mercedes benz', 'volvo', 'general motors', 'tesla', 'audi']
+#my_cars = cars[2:4]
+#print(my_cars)
+#print(cars[2:5])
+#print(cars)
+#print(cars[:4])
+#print(cars[3:])
+
+#sonlar = [1, 2, 3, 4, 5]
+#sonlar2 = sonlar
+#sonlar2.append(6)
+#sonlar2.append(7)
+#print("Bu sonlar ro'yxati", sonlar)
+#print("Bu sonlar ro'yxati:", sonlar2)
+
+#sonlar = [1, 2, 3, 4, 5]
+#sonlar2 = sonlar[:]
+#sonlar2.append(6)
+#sonlar2.append(7)
+#print(sonlar)
+#print(sonlar2)
+
+#tomonlar = ("20, 30, 55")
+#print(tomonlar)
+#print(tomonlar[0])
+
+#tomonlar = (30, 'car', 'lego', 'panzer')
+#print(tomonlar[0])
+#print(tomonlar[1])
+#print(tomonlar[0:3])
+#tomonlar = list(tomonlar)
+#tomonlar[0] = 40
+#tomonlar.append('dragon')
+#tomonlar.remove('lego')
+#tomonlar = tuple(tomonlar)#o'zgartirilgan ro'yxatni qayta o'zgarmas ro'yxatga o'zgartirish
+#print(tomonlar)
+
+#davlatlar = ['Uzbekistan', 'Amerika', 'Korea', 'Canada', 'Palastine']
+#print(len(davlatlar))
+#print(sorted(davlatlar))
+#print(sorted(davlatlar,reverse=True))
+#davlatlar.reverse()
+#davlatlar.sort()
+#davlatlar.sort(reverse=True)
+#print(davlatlar)
+
+#juft_sonlar = list(range(120, 1200,2))
+#print(juft_sonlar)
+#jami = sum(juft_sonlar)
+#print(jami)
+#print(max(juft_sonlar)-min(juft_sonlar))
+#print(len(juft_sonlar))
+
+#print(juft_sonlar[:20])
+#print(juft_sonlar[-20:])
+#print(juft_sonlar[530:550])
+taomlar = ['osh','somsa','norin','shashlik','qozonkabob']
+nonushta = taomlar[:]
+nonushta.remove('norin')
+nonushta.remove('shashlik')
+nonushta.remove('qozonkabob')
+nonushta.append('non va qaymoq')
+nonushta.append('issiq non')
+print(taomlar)
+print(nonushta)
+nonushta = tuple(nonushta)
+nonushta[0] = 'qaymoq va non'
 
 
+#cars = ['Toyota', 'GM','Audi','Volvo', 'BMW', 'Hyundai', 'KIA', 'VolksWagen']
+#carss = ['bmw','mercedes benz', 'volvo', 'gm', 'tesla', 'audi']
+#carss.sort(reverse=True)
+#cars.sort() # Alifbo tartibida joylanadi
+#cars.sort(reverse=True) #ohiridan boshiga alifbo tartibida
+#t_cars = sorted(cars) #Asl ro'yxatga tegmagan xolda tartiblash
+#t_cars = sorted(cars, reverse=True) #Ro'yxatni
+#print(t_cars)
+#print(cars)
+#print(carss)
 
+#mehmonlar = ['Odil', 'Hamid', 'Temur', 'Avazbek', 'Farruh', 'Shamsiddin']
+#print("Sorted() qaytargan ro'yxat:", sorted(mehmonlar))
+#print(sorted(mehmonlar, reverse=True))
+#print("Asl ro'yxat o'zgarmas qoldi:", mehmonlar)
+#mehmonlar.sort()
+#print(mehmonlar)
 
+#ages = [12, 64, 36, 487, 52]
+#ages.sort()
+#print(ages)
+#print(sorted(ages, reverse=True))
 
+#sonlar = list(range(0,10))#Diqqat! E'tibor qiling range()funktsiyasi ikkinchi indeksdan bitta avval to'xtaydi.
+#print(sonlar)
+#juft_sonlar = list(range(0,10,2))
+#toq_sonlar = list(range(1, 20, 2 ))
+#sons = list(range(10))
+#print(sons)
+#print(juft_sonlar)
+#print(toq_sonlar)
 
+#narxlar = [12000, 18000, 25000, 11000, 8000]
+#arzon = min(narxlar)
+#qimmat = max(narxlar)
+#jami = sum(narxlar)
+#print("Eng arzon narxlar:", arzon,  "\nEng qimmat narxlar:", qimmat,  "\nJami:", jami )
+#fruits = ['banan', 'pear', 'apple', 'lemon', 'watermelon']
+#fruits.reverse()#ro'yxatni ortidan oldiga qaytarish
+#print('Element soni:', len(fruits))
+#print(fruits)
 
+#cars = ['bmw','mercedes benz', 'volvo', 'general motors', 'tesla', 'audi']
+#my_cars = cars[2:4]
+#print(my_cars)
+#print(cars[2:5])
+#print(cars)
+#print(cars[:4])
+#print(cars[3:])
 
+#sonlar = [1, 2, 3, 4, 5]
+#sonlar2 = sonlar
+#sonlar2.append(6)
+#sonlar2.append(7)
+#print("Bu sonlar ro'yxati", sonlar)
+#print("Bu sonlar ro'yxati:", sonlar2)
 
+#sonlar = [1, 2, 3, 4, 5]
+#sonlar2 = sonlar[:]
+#sonlar2.append(6)
+#sonlar2.append(7)
+#print(sonlar)
+#print(sonlar2)
 
+#tomonlar = ("20, 30, 55")
+#print(tomonlar)
+#print(tomonlar[0])
 
+#tomonlar = (30, 'car', 'lego', 'panzer')
+#print(tomonlar[0])
+#print(tomonlar[1])
+#print(tomonlar[0:3])
+#tomonlar = list(tomonlar)
+#tomonlar[0] = 40
+#tomonlar.append('dragon')
+#tomonlar.remove('lego')
+#tomonlar = tuple(tomonlar)#o'zgartirilgan ro'yxatni qayta o'zgarmas ro'yxatga o'zgartirish
+#print(tomonlar)
 
+#davlatlar = ['Uzbekistan', 'Amerika', 'Korea', 'Canada', 'Palastine']
+#print(len(davlatlar))
+#print(sorted(davlatlar))
+#print(sorted(davlatlar,reverse=True))
+#davlatlar.reverse()
+#davlatlar.sort()
+#davlatlar.sort(reverse=True)
+#print(davlatlar)
 
+#juft_sonlar = list(range(120, 1200,2))
+#print(juft_sonlar)
+#jami = sum(juft_sonlar)
+#print(jami)
+#print(max(juft_sonlar)-min(juft_sonlar))
+#print(len(juft_sonlar))
 
-
-
-
-
-
-
+#print(juft_sonlar[:20])
+#print(juft_sonlar[-20:])
+#print(juft_sonlar[530:550])
+#taomlar = ['osh','somsa','norin','shashlik','qozonkabob']
+#nonushta = taomlar[:]
+#nonushta.remove('norin')
+#nonushta.remove('shashlik')
+#nonushta.remove('qozonkabob')
+#nonushta.append('non va qaymoq')
+#nonushta.append('issiq non')
+#print(taomlar)
+#print(nonushta)
+#nonushta = tuple(nonushta)
+#nonushta[0] = 'qaymoq va non'
