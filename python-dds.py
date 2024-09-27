@@ -274,28 +274,7 @@ Created on Tue Sep 17 08:40:27 2024
 #print(f"Men tarixiy shaxslardan {t_shaxslar.pop(0)} bilan,\nzamonaviy shaxslardan esa {z_shaxlar.pop(0)} bilan, \n suhbat qilishni istardim ")
 
 
-friends = []
-mehmonlar = []
-friends.append('Javohir')
-friends.append('Davron')
-friends.append('Oybek')
-friends.append('Bobir')
-friends.append('Muhammad')
-friends.append('Naimboy')
-friends.append('Akbarali')
-friends.remove('Akbarali')
-friends.remove('Oybek')
-friends.remove('Muhammad')
-friends.insert(0, 'NurMuhammad')
-friends.insert(2, 'Maruf')
-friends.append('Ahmadjon')
 
-mehmonlar.append(friends.pop(1))
-mehmonlar.append(friends.pop(0))
-mehmonlar.append(friends.pop(1))
-mehmonlar.append(friends.pop(2))
-print("Kelmaganlar", friends)
-print('Kelgan mehmonlar:', mehmonlar)
 #sonlar = [22, -58.2, 34.0, 67, 1983, 123_456_678_000, 112.4]
 #sonlar.append(12)
 #sonlar.insert(1, 23)
@@ -311,25 +290,46 @@ print('Kelgan mehmonlar:', mehmonlar)
 #print(f"Men tarixiy shaxslardan {t_shaxslar.pop(0)} bilan,\nzamonaviy shaxslardan esa {z_shaxlar.pop(0)} bilan, \n suhbat qilishni istardim ")
 
 
-friends = []
-mehmonlar = []
-friends.append('Javohir')
-friends.append('Davron')
-friends.append('Oybek')
-friends.append('Bobir')
-friends.append('Muhammad')
-friends.append('Naimboy')
-friends.append('Akbarali')
-friends.remove('Akbarali')
-friends.remove('Oybek')
-friends.remove('Muhammad')
-friends.insert(0, 'NurMuhammad')
-friends.insert(2, 'Maruf')
-friends.append('Ahmadjon')
+#friends = []
+#mehmonlar = []
+#friends.append('Javohir')
+#friends.append('Davron')
+#friends.append('Oybek')
+#friends.append('Bobir')
+#friends.append('Muhammad')
+#friends.append('Naimboy')
+#friends.append('Akbarali')
+#friends.remove('Akbarali')
+#friends.remove('Oybek')
+#friends.remove('Muhammad')
+#friends.insert(0, 'NurMuhammad')
+#friends.insert(2, 'Maruf')
+#friends.append('Ahmadjon')
 
-mehmonlar.append(friends.pop(1))
-mehmonlar.append(friends.pop(0))
-mehmonlar.append(friends.pop(1))
-mehmonlar.append(friends.pop(2))
-print("Kelmaganlar", friends)
-print('Kelgan mehmonlar:', mehmonlar)
+#mehmonlar.append(friends.pop(1))
+#mehmonlar.append(friends.pop(0))
+#mehmonlar.append(friends.pop(1))
+#mehmonlar.append(friends.pop(2))
+#print("Kelmaganlar", friends)
+#print('Kelgan mehmonlar:', mehmonlar)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
