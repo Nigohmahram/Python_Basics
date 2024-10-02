@@ -321,7 +321,7 @@ Created on Tue Sep 17 08:40:27 2024
 #cars.sort() # Alifbo tartibida joylanadi
 #cars.sort(reverse=True) #ohiridan boshiga alifbo tartibida
 #t_cars = sorted(cars) #Asl ro'yxatga tegmagan xolda tartiblash
-#t_cars = sorted(cars, reverse=True) #Ro'yxatni
+#t_cars = sorted(cars, reverse=True) #Ro'yxatni 
 #print(t_cars)
 #print(cars)
 #print(carss)
@@ -392,7 +392,7 @@ Created on Tue Sep 17 08:40:27 2024
 #tomonlar.append('dragon')
 #tomonlar.remove('lego')
 #tomonlar = tuple(tomonlar)#o'zgartirilgan ro'yxatni qayta o'zgarmas ro'yxatga o'zgartirish
-#print(tomonlar)
+#print(tomonlar) 
 
 #davlatlar = ['Uzbekistan', 'Amerika', 'Korea', 'Canada', 'Palastine']
 #print(len(davlatlar))
@@ -445,7 +445,7 @@ Created on Tue Sep 17 08:40:27 2024
 #sonlar_kvadrati=[]
 #for son in sonlar:
 #    sonlar_kvadrati.append(son**2)
-
+    
 #print(sonlar)
 #print(sonlar_kvadrati)
 
@@ -453,17 +453,17 @@ Created on Tue Sep 17 08:40:27 2024
 #print("5 ta eng yaqin do'stingizni kim?\n")
 #for dost in range(5):
  #   dostlar.append(input(f"{dost+1}-do'stingizning ismini kiriting\n>>>"))
-
+    
 #print(dostlar)
 
 #mehmonlar = ['Ali', 'Vali', 'Husan', 'Hasan']
-#for mehmon in mehmonlar:
+#for mehmon in mehmonlar: 
     #print(f"Bizning bugungi mehmonlar {mehmon}")
     #print(f"Hurmatli {mehmon} sizni 20-Dekabar oshga taklif qilamiz")
     #print("Hurmat bilan Polonchi Pistonchi\n")
-
-
-
+    
+    
+    
 #sonlar = list(range(1,11))
 #for son in sonlar:
    #print(f"{son}ning kvadrati {son**2}ga teng")
@@ -485,85 +485,7 @@ Created on Tue Sep 17 08:40:27 2024
 #for ism in ismlar:
  #   print(f"Assalomu alekum {ism} sahifamizga hush kelibsiz")
  #   print(f"Kod {len(ismlar)} marta takrorlandi")
-
-#sonlar = list(range(11,100,2))
-#for son in sonlar:
-#   print(son**3)
-
-#kinolar = []
-#print("Eng sevimli kinolaringizni kiriting")
-#for n in range(5):
- #   kinolar.append(input(f"{n+1} Marhamat>>> "))
-#print(kinolar)
-
-suhbatlashmoq = []
-print("Bugun nechta odam bilan suhbatlashdingiz?")
-for suhbat in range(3):
-    suhbatlashmoq.append(input(f"{suhbat+1}-Suhbat qilgan kishingiz kim edi>>>"))
-print(suhbatlashmoq)
-
-
-
-#For tsikli bilan tanishamiz
-
-#mehonlar = ['Ali', 'Vali', 'Hasan', 'Husan', 'Olim']
-#for mehmon in mehonlar:
-    #print("Salom", mehmon)
-    #print("Hayr mehmonjonlar", mehmon)
-   # print(f"\nHurmatli {mehmon}, sizni 20 Dekabr kuni nahorga oshga taklif qilamiz")
-    #print("Hurmat bilan, Palonchi pistonchi")
-
-
-
-#sonlar = list(range(1,11))
-#for son in sonlar:
-    #print(f"{son} ning kvadrati {son**2} ga teng")
-
-#sonlar = list(range(11))
-#sonlar_kvadrati=[]
-#for son in sonlar:
-#    sonlar_kvadrati.append(son**2)
-
-#print(sonlar)
-#print(sonlar_kvadrati)
-
-#dostlar = []
-#print("5 ta eng yaqin do'stingizni kim?\n")
-#for dost in range(5):
- #   dostlar.append(input(f"{dost+1}-do'stingizning ismini kiriting\n>>>"))
-
-#print(dostlar)
-
-#mehmonlar = ['Ali', 'Vali', 'Husan', 'Hasan']
-#for mehmon in mehmonlar:
-    #print(f"Bizning bugungi mehmonlar {mehmon}")
-    #print(f"Hurmatli {mehmon} sizni 20-Dekabar oshga taklif qilamiz")
-    #print("Hurmat bilan Polonchi Pistonchi\n")
-
-
-
-#sonlar = list(range(1,11))
-#for son in sonlar:
-   #print(f"{son}ning kvadrati {son**2}ga teng")
-#sonlar = list(range(11))
-#sonlar_kvadrati =[]
-#for son in sonlar:
- #    sonlar_kvadrati.append(son**2)
-#print(sonlar)
-#print(sonlar_kvadrati)
-
-
-#dostlar = []
-#print("5 ta eng yaqing do'stingiz kim?")
-#for n in range(5):
- #   dostlar.append(input(f"{n+1}-do'stingizning ismini kiriting:>>>"))
-#print(dostlar)
-
-#ismlar = ['Muhammad', 'Javohir', 'Oybek', 'Bobir', 'Hojiakbar']
-#for ism in ismlar:
- #   print(f"Assalomu alekum {ism} sahifamizga hush kelibsiz")
- #   print(f"Kod {len(ismlar)} marta takrorlandi")
-
+  
 #sonlar = list(range(11,100,2))
 #for son in sonlar:
 #   print(son**3)
@@ -579,3 +501,53 @@ print(suhbatlashmoq)
 #for suhbat in range(3):
  #   suhbatlashmoq.append(input(f"{suhbat+1}-Suhbat qilgan kishingiz kim edi>>>"))
 #print(suhbatlashmoq)
+
+
+#if-else shartlari va tarmoqlanish
+
+#avtolar = ['matiz', 'audi', 'bmw', 'volvo', 'kia', 'hyundai']
+#for avto in avtolar:
+    #if avto == 'bmw':
+     #   print(avto.upper())
+    #else:
+     #   print(avto.title())
+        
+#buyumlar = ['notebook','hona','telefon','planshet']
+#for buyum in buyumlar:
+ #   if buyum == 'hona':
+  #      print(buyum.upper())
+   # else:
+    #    print(buyum.title())
+
+
+
+# %%
+# %%
+ism = input("Ismingiz nima?\n>>>")
+if ism.lower() != "ali":
+    print(f"Uzr,{ism.title()} biz Alini kutyapmi")
+else:
+    print("Salom, Ali")
+# %%
+# %%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
