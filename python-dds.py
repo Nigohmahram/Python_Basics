@@ -522,37 +522,66 @@ Created on Tue Sep 17 08:40:27 2024
 
 # Ro'yxat
 
-mevalar = ["Olma", "Anjir", "Shaftoli", "Banana"]
+# mevalar = ["Olma", "Anjir", "Shaftoli", "Banana"]
 
-narxlar = [18000, 12000, 15000, 29000, 38000]
-sonlar = ["bir", "ikki", 3, 4, 5]
-hayvonlar = ["Mushuk", "It", "Sigir", "Echki", "Mushuk"]
-bozorlik = ["un", "yog'", "piyoz", "shakar", "kartoshka"]
-ismlar = []
-cars = []
-mevalar.insert(3, 'Bexi')
-cars.append("Nexia")
-cars.insert(0,"Malibu")
-cars.insert(1,"Damas")
-cars.insert(0,"Tracker")
-del cars[0]
-del cars[1]
-cars.remove("Malibu")
-del hayvonlar[0]
-maxsulot = bozorlik.pop(1)
-maxsulotlar = bozorlik.pop(2)
+# narxlar = [18000, 12000, 15000, 29000, 38000]
+# sonlar = ["bir", "ikki", 3, 4, 5]
+# hayvonlar = ["Mushuk", "It", "Sigir", "Echki", "Mushuk"]
+# bozorlik = ["un", "yog'", "piyoz", "shakar", "kartoshka"]
+# ismlar = []
+# cars = []
+# mevalar.insert(3, 'Bexi')
+# cars.append("Nexia")
+# cars.insert(0,"Malibu")
+# cars.insert(1,"Damas")
+# cars.insert(0,"Tracker")
+# del cars[0]
+# del cars[1]
+# cars.remove("Malibu")
+# del hayvonlar[0]
+# maxsulot = bozorlik.pop(1)
+# maxsulotlar = bozorlik.pop(2)
 
-print(mevalar)
-print(narxlar)
-print(sonlar)
-print(hayvonlar)
-print(bozorlik)
-print(ismlar)
-print(cars)
-print(maxsulot)
-print("Men " + maxsulotlar + " sotib oldim")
-print("Olinmagan maxsulotlar ", bozorlik)
+# print(mevalar)
+# print(narxlar)
+# print(sonlar)
+# print(hayvonlar)
+# print(bozorlik)
+# print(ismlar)
+# print(cars)
+# print(maxsulot)
+# print("Men " + maxsulotlar + " sotib oldim")
+# print("Olinmagan maxsulotlar ", bozorlik)
 
+from tkinter import Tk, Entry, StringVar
+from tkinter import Button
+
+
+class Calculator:
+    def __init__(self,master):
+        master.title("Calculator")
+        master.geometry('357x420+0+0')
+        master.config(bg="gray")
+        master.resiable(False,False)
+        
+        self.equation=StringVar()
+        self.entry_value=''
+        Entry(width=17,bg='fff',font=('Arial Bold',28),textvariable=self.equation).place(x=0,y=0)
+        
+    def show(self,value):
+            self.entry_value+=str(value)
+            self.equation.set(self.entry_value)
+            
+    def clear(self):
+            self.entry_value=''
+            self.equation.set(self.entry_value)
+            
+    def solve(self):
+            result=eval(self.entry_value)
+            self.equation.set(result)
+root=Tk()
+calculator=Calculator(root)
+root.mainloop()
 
     
 
