@@ -522,68 +522,232 @@ Created on Tue Sep 17 08:40:27 2024
 
 # Ro'yxat
 
-# mevalar = ["Olma", "Anjir", "Shaftoli", "Banana"]
+mevalar = ["Olma", "Anjir", "Shaftoli", "Banana"]
 
-# narxlar = [18000, 12000, 15000, 29000, 38000]
-# sonlar = ["bir", "ikki", 3, 4, 5]
-# hayvonlar = ["Mushuk", "It", "Sigir", "Echki", "Mushuk"]
-# bozorlik = ["un", "yog'", "piyoz", "shakar", "kartoshka"]
-# ismlar = []
-# cars = []
-# mevalar.insert(3, 'Bexi')
-# cars.append("Nexia")
-# cars.insert(0,"Malibu")
-# cars.insert(1,"Damas")
-# cars.insert(0,"Tracker")
-# del cars[0]
-# del cars[1]
-# cars.remove("Malibu")
-# del hayvonlar[0]
-# maxsulot = bozorlik.pop(1)
-# maxsulotlar = bozorlik.pop(2)
+narxlar = [18000, 12000, 15000, 29000, 38000]
+hayvonlar = ["Mushuk", "It", "Sigir", "Echki", "Mushuk"]
+bozorlik = ["un", "yog'", "piyoz", "shakar", "kartoshka"]
+harflar = ["s","d", "f", "a", "g", "b", "l", "v", "t", "r"]
+sonlar = [5, 9, 7, 3, 2, 1, 4, 8, 0, 6]
+ismlar = []
+cars = []
+mevalar.insert(3, 'Bexi')
+cars.append("Nexia")
+cars.insert(0,"Malibu")
+cars.insert(1,"Damas")
+cars.insert(0,"Tracker")
+del cars[0]
+del cars[1]
+cars.remove("Malibu")
+del hayvonlar[0]
+maxsulot = bozorlik.pop(1)
+maxsulotlar = bozorlik.pop(2)
+harflar.sort()
+sonlar.sort()
+harflar.sort(reverse=True)
 
-# print(mevalar)
-# print(narxlar)
-# print(sonlar)
-# print(hayvonlar)
-# print(bozorlik)
-# print(ismlar)
-# print(cars)
-# print(maxsulot)
-# print("Men " + maxsulotlar + " sotib oldim")
-# print("Olinmagan maxsulotlar ", bozorlik)
+print(mevalar)
+print(narxlar)
+print(sonlar)
+print(hayvonlar)
+print(bozorlik)
+print(ismlar)
+print(cars)
+print(maxsulot)
+print("Men " + maxsulotlar + " sotib oldim")
+print("Olinmagan maxsulotlar ", bozorlik)
+print(harflar)
+print(sorted(cars))
 
-from tkinter import Tk, Entry, StringVar
-from tkinter import Button
+# Standard library imports
+import ast
+import bdb
+import builtins
+from contextlib import contextmanager
+import io
+import logging
+import os
+import pdb
+import shlex
+import sys
+import time
+
+# Third-party imports
+from IPython.core.inputtransformer2 import (
+    TransformerManager,
+    leading_indent,
+    leading_empty_lines,
+)
+from IPython.core.magic import (
+    needs_local_scope,
+    magics_class,
+    Magics,
+    line_magic,
+)
+from IPython.core import magic_arguments
+
+# Local imports
+from spyder_kernels.comms.frontendcomm import frontend_request
+from spyder_kernels.customize.namespace_manager import NamespaceManager
+from spyder_kernels.customize.spyderpdb import SpyderPdb
+from spyder_kernels.customize.umr import UserModuleReloader
+from spyder_kernels.customize.utils import (
+    capture_last_Expr, canonic, exec_encapsulate_locals
+)
 
 
-class Calculator:
-    def __init__(self,master):
-        master.title("Calculator")
-        master.geometry('357x420+0+0')
-        master.config(bg="gray")
-        master.resiable(False,False)
-        
-        self.equation=StringVar()
-        self.entry_value=''
-        Entry(width=17,bg='fff',font=('Arial Bold',28),textvariable=self.equation).place(x=0,y=0)
-        
-    def show(self,value):
-            self.entry_value+=str(value)
-            self.equation.set(self.entry_value)
-            
-    def clear(self):
-            self.entry_value=''
-            self.equation.set(self.entry_value)
-            
-    def solve(self):
-            result=eval(self.entry_value)
-            self.equation.set(result)
-root=Tk()
-calculator=Calculator(root)
-root.mainloop()
+# For logging
+logger = logging.getLogger(__name__)
 
-    
+
+def runfile_arguments(func):
+    """Decorator to add runfile magic arguments to magic."""
+    decorators = [
+        magic_arguments.magic_arguments(),
+        magic_arguments.argument(
+            "filename",
+            help="""
+            Filename to run
+            """,
+        ),
+        magic_arguments.argument(
+            "--args",
+            help="""
+            Command line arguments (string)
+            """,
+        ),
+        magic_arguments.argument(
+            "--wdir",
+            const=True,
+            nargs="?",
+            help="""
+            Working directory
+            """,
+        ),
+        magic_arguments.argument(
+            "--post-mortem",
+            action="store_true",
+            help="""
+            Enter post-mortem mode on errors
+            """,
+        ),
+        magic_arguments.argument(
+            "--current-namespace",
+            action="store_true",
+            help="""
+            Use current namespace
+            """,
+        ),
+        magic_arguments.argument(
+            "--namespace",
+            help="""
+            Namespace to run the file in
+            """,
+        )
+        ]
+    for dec in reversed(decorators):
+        func = dec(func)
+    return func
+
+
+def runcell_arguments(func):
+    """Decorator to add runcell magic arguments to magic."""
+    decorators = [
+        magic_arguments.magic_arguments(),
+        magic_arguments.argument(
+            "--name", "-n",
+            help="""
+            Cell name.
+            """,
+        ),
+        magic_arguments.argument(
+            "--index", "-i",
+            help="""
+            Cell index.
+            """,
+        ),
+        magic_arguments.argument(
+            "filename",
+            nargs="?",
+            help="""
+            Filename
+            """,
+        ),
+        magic_arguments.argument(
+            "--post-mortem",
+            action="store_true",
+            default=False,
+            help="""
+            Enter post-mortem mode on errors
+            """,
+        )
+        ]
+    for dec in reversed(decorators):
+        func = dec(func)
+    return func
+
+
+@magics_class
+class SpyderCodeRunner(Magics):
+    """
+    Functions and magics related to code execution, debugging, profiling, etc.
+    """
+    def __init__(self, *args, **kwargs):
+        self.show_global_msg = True
+        self.show_invalid_syntax_msg = True
+        self.umr = UserModuleReloader(
+            namelist=os.environ.get("SPY_UMR_NAMELIST", None)
+        )
+        super().__init__(*args, **kwargs)
+
+    @runfile_arguments
+    @needs_local_scope
+    @line_magic
+    def runfile(self, line, local_ns=None):
+        """
+        Run a file.
+        """
+        args, local_ns = self._parse_runfile_argstring(
+            self.runfile, line, local_ns)
+
+        return self._exec_file(
+            filename=args.filename,
+            canonic_filename=args.canonic_filename,
+            args=args.args,
+            wdir=args.wdir,
+            post_mortem=args.post_mortem,
+            current_namespace=args.current_namespace,
+            context_globals=args.namespace,
+            context_locals=local_ns,
+        )
+
+    @runfile_arguments
+    @needs_local_scope
+    @line_magic
+    def debugfile(self, line, local_ns=None):
+        """
+        Debug a file.
+        """
+        args, local_ns = self._parse_runfile_argstring(
+            self.debugfile, line, local_ns)
+
+        with self._debugger_exec(args.canonic_filename, True) as debug_exec:
+            self._exec_file(
+                filename=args.filename,
+                canonic_filename=args.canonic_filename,
+                args=args.args,
+                wdir=args.wdir,
+                current_namespace=args.current_namespace,
+                exec_fun=debug_exec,
+                post_mortem=args.post_mortem,
+                context_globals=args.namespace,
+                context_locals=local_ns,
+            )
+
+
+
+
+
 
 
 
