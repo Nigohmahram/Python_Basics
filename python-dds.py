@@ -545,6 +545,8 @@ maxsulotlar = bozorlik.pop(2)
 harflar.sort()
 sonlar.sort()
 harflar.sort(reverse=True)
+sonlarr = list(range(10, 23))
+
 
 print(mevalar)
 print(narxlar)
@@ -558,195 +560,207 @@ print("Men " + maxsulotlar + " sotib oldim")
 print("Olinmagan maxsulotlar ", bozorlik)
 print(harflar)
 print(sorted(cars))
+print(len(sonlar))
+print(sonlarr)
+"""
+This is used to convert the currency using the Amdoren Currency API
+https://www.amdoren.com
+"""
 
-# Standard library imports
-import ast
-import bdb
-import builtins
-from contextlib import contextmanager
-import io
-import logging
 import os
-import pdb
-import shlex
-import sys
-import time
 
-# Third-party imports
-from IPython.core.inputtransformer2 import (
-    TransformerManager,
-    leading_indent,
-    leading_empty_lines,
-)
-from IPython.core.magic import (
-    needs_local_scope,
-    magics_class,
-    Magics,
-    line_magic,
-)
-from IPython.core import magic_arguments
+import requests
 
-# Local imports
-from spyder_kernels.comms.frontendcomm import frontend_request
-from spyder_kernels.customize.namespace_manager import NamespaceManager
-from spyder_kernels.customize.spyderpdb import SpyderPdb
-from spyder_kernels.customize.umr import UserModuleReloader
-from spyder_kernels.customize.utils import (
-    capture_last_Expr, canonic, exec_encapsulate_locals
-)
+URL_BASE = "https://www.amdoren.com/api/currency.php"
 
 
-# For logging
-logger = logging.getLogger(__name__)
+# Currency and their description
+list_of_currencies = """
+AED	United Arab Emirates Dirham
+AFN	Afghan Afghani
+ALL	Albanian Lek
+AMD	Armenian Dram
+ANG	Netherlands Antillean Guilder
+AOA	Angolan Kwanza
+ARS	Argentine Peso
+AUD	Australian Dollar
+AWG	Aruban Florin
+AZN	Azerbaijani Manat
+BAM	Bosnia & Herzegovina Convertible Mark
+BBD	Barbadian Dollar
+BDT	Bangladeshi Taka
+BGN	Bulgarian Lev
+BHD	Bahraini Dinar
+BIF	Burundian Franc
+BMD	Bermudian Dollar
+BND	Brunei Dollar
+BOB	Bolivian Boliviano
+BRL	Brazilian Real
+BSD	Bahamian Dollar
+BTN	Bhutanese Ngultrum
+BWP	Botswana Pula
+BYN	Belarus Ruble
+BZD	Belize Dollar
+CAD	Canadian Dollar
+CDF	Congolese Franc
+CHF	Swiss Franc
+CLP	Chilean Peso
+CNY	Chinese Yuan
+COP	Colombian Peso
+CRC	Costa Rican Colon
+CUC	Cuban Convertible Peso
+CVE	Cape Verdean Escudo
+CZK	Czech Republic Koruna
+DJF	Djiboutian Franc
+DKK	Danish Krone
+DOP	Dominican Peso
+DZD	Algerian Dinar
+EGP	Egyptian Pound
+ERN	Eritrean Nakfa
+ETB	Ethiopian Birr
+EUR	Euro
+FJD	Fiji Dollar
+GBP	British Pound Sterling
+GEL	Georgian Lari
+GHS	Ghanaian Cedi
+GIP	Gibraltar Pound
+GMD	Gambian Dalasi
+GNF	Guinea Franc
+GTQ	Guatemalan Quetzal
+GYD	Guyanaese Dollar
+HKD	Hong Kong Dollar
+HNL	Honduran Lempira
+HRK	Croatian Kuna
+HTG	Haiti Gourde
+HUF	Hungarian Forint
+IDR	Indonesian Rupiah
+ILS	Israeli Shekel
+INR	Indian Rupee
+IQD	Iraqi Dinar
+IRR	Iranian Rial
+ISK	Icelandic Krona
+JMD	Jamaican Dollar
+JOD	Jordanian Dinar
+JPY	Japanese Yen
+KES	Kenyan Shilling
+KGS	Kyrgystani Som
+KHR	Cambodian Riel
+KMF	Comorian Franc
+KPW	North Korean Won
+KRW	South Korean Won
+KWD	Kuwaiti Dinar
+KYD	Cayman Islands Dollar
+KZT	Kazakhstan Tenge
+LAK	Laotian Kip
+LBP	Lebanese Pound
+LKR	Sri Lankan Rupee
+LRD	Liberian Dollar
+LSL	Lesotho Loti
+LYD	Libyan Dinar
+MAD	Moroccan Dirham
+MDL	Moldovan Leu
+MGA	Malagasy Ariary
+MKD	Macedonian Denar
+MMK	Myanma Kyat
+MNT	Mongolian Tugrik
+MOP	Macau Pataca
+MRO	Mauritanian Ouguiya
+MUR	Mauritian Rupee
+MVR	Maldivian Rufiyaa
+MWK	Malawi Kwacha
+MXN	Mexican Peso
+MYR	Malaysian Ringgit
+MZN	Mozambican Metical
+NAD	Namibian Dollar
+NGN	Nigerian Naira
+NIO	Nicaragua Cordoba
+NOK	Norwegian Krone
+NPR	Nepalese Rupee
+NZD	New Zealand Dollar
+OMR	Omani Rial
+PAB	Panamanian Balboa
+PEN	Peruvian Nuevo Sol
+PGK	Papua New Guinean Kina
+PHP	Philippine Peso
+PKR	Pakistani Rupee
+PLN	Polish Zloty
+PYG	Paraguayan Guarani
+QAR	Qatari Riyal
+RON	Romanian Leu
+RSD	Serbian Dinar
+RUB	Russian Ruble
+RWF	Rwanda Franc
+SAR	Saudi Riyal
+SBD	Solomon Islands Dollar
+SCR	Seychellois Rupee
+SDG	Sudanese Pound
+SEK	Swedish Krona
+SGD	Singapore Dollar
+SHP	Saint Helena Pound
+SLL	Sierra Leonean Leone
+SOS	Somali Shilling
+SRD	Surinamese Dollar
+SSP	South Sudanese Pound
+STD	Sao Tome and Principe Dobra
+SYP	Syrian Pound
+SZL	Swazi Lilangeni
+THB	Thai Baht
+TJS	Tajikistan Somoni
+TMT	Turkmenistani Manat
+TND	Tunisian Dinar
+TOP	Tonga Paanga
+TRY	Turkish Lira
+TTD	Trinidad and Tobago Dollar
+TWD	New Taiwan Dollar
+TZS	Tanzanian Shilling
+UAH	Ukrainian Hryvnia
+UGX	Ugandan Shilling
+USD	United States Dollar
+UYU	Uruguayan Peso
+UZS	Uzbekistan Som
+VEF	Venezuelan Bolivar
+VND	Vietnamese Dong
+VUV	Vanuatu Vatu
+WST	Samoan Tala
+XAF	Central African CFA franc
+XCD	East Caribbean Dollar
+XOF	West African CFA franc
+XPF	CFP Franc
+YER	Yemeni Rial
+ZAR	South African Rand
+ZMW	Zambian Kwacha
+"""
 
 
-def runfile_arguments(func):
-    """Decorator to add runfile magic arguments to magic."""
-    decorators = [
-        magic_arguments.magic_arguments(),
-        magic_arguments.argument(
-            "filename",
-            help="""
-            Filename to run
-            """,
-        ),
-        magic_arguments.argument(
-            "--args",
-            help="""
-            Command line arguments (string)
-            """,
-        ),
-        magic_arguments.argument(
-            "--wdir",
-            const=True,
-            nargs="?",
-            help="""
-            Working directory
-            """,
-        ),
-        magic_arguments.argument(
-            "--post-mortem",
-            action="store_true",
-            help="""
-            Enter post-mortem mode on errors
-            """,
-        ),
-        magic_arguments.argument(
-            "--current-namespace",
-            action="store_true",
-            help="""
-            Use current namespace
-            """,
-        ),
-        magic_arguments.argument(
-            "--namespace",
-            help="""
-            Namespace to run the file in
-            """,
+def convert_currency(
+    from_: str = "USD", to: str = "INR", amount: float = 1.0, api_key: str = ""
+) -> str:
+    """https://www.amdoren.com/currency-api/"""
+    # Instead of manually generating parameters
+    params = locals()
+    # from is a reserved keyword
+    params["from"] = params.pop("from_")
+    res = requests.get(URL_BASE, params=params, timeout=10).json()
+    return str(res["amount"]) if res["error"] == 0 else res["error_message"]
+
+
+if __name__ == "__main__":
+    TESTING = os.getenv("CI", "")
+    API_KEY = os.getenv("AMDOREN_API_KEY", "")
+
+    if not API_KEY and not TESTING:
+        raise KeyError(
+            "API key must be provided in the 'AMDOREN_API_KEY' environment variable."
         )
-        ]
-    for dec in reversed(decorators):
-        func = dec(func)
-    return func
 
-
-def runcell_arguments(func):
-    """Decorator to add runcell magic arguments to magic."""
-    decorators = [
-        magic_arguments.magic_arguments(),
-        magic_arguments.argument(
-            "--name", "-n",
-            help="""
-            Cell name.
-            """,
-        ),
-        magic_arguments.argument(
-            "--index", "-i",
-            help="""
-            Cell index.
-            """,
-        ),
-        magic_arguments.argument(
-            "filename",
-            nargs="?",
-            help="""
-            Filename
-            """,
-        ),
-        magic_arguments.argument(
-            "--post-mortem",
-            action="store_true",
-            default=False,
-            help="""
-            Enter post-mortem mode on errors
-            """,
+    print(
+        convert_currency(
+            input("Enter from currency: ").strip(),
+            input("Enter to currency: ").strip(),
+            float(input("Enter the amount: ").strip()),
+            API_KEY,
         )
-        ]
-    for dec in reversed(decorators):
-        func = dec(func)
-    return func
-
-
-@magics_class
-class SpyderCodeRunner(Magics):
-    """
-    Functions and magics related to code execution, debugging, profiling, etc.
-    """
-    def __init__(self, *args, **kwargs):
-        self.show_global_msg = True
-        self.show_invalid_syntax_msg = True
-        self.umr = UserModuleReloader(
-            namelist=os.environ.get("SPY_UMR_NAMELIST", None)
-        )
-        super().__init__(*args, **kwargs)
-
-    @runfile_arguments
-    @needs_local_scope
-    @line_magic
-    def runfile(self, line, local_ns=None):
-        """
-        Run a file.
-        """
-        args, local_ns = self._parse_runfile_argstring(
-            self.runfile, line, local_ns)
-
-        return self._exec_file(
-            filename=args.filename,
-            canonic_filename=args.canonic_filename,
-            args=args.args,
-            wdir=args.wdir,
-            post_mortem=args.post_mortem,
-            current_namespace=args.current_namespace,
-            context_globals=args.namespace,
-            context_locals=local_ns,
-        )
-
-    @runfile_arguments
-    @needs_local_scope
-    @line_magic
-    def debugfile(self, line, local_ns=None):
-        """
-        Debug a file.
-        """
-        args, local_ns = self._parse_runfile_argstring(
-            self.debugfile, line, local_ns)
-
-        with self._debugger_exec(args.canonic_filename, True) as debug_exec:
-            self._exec_file(
-                filename=args.filename,
-                canonic_filename=args.canonic_filename,
-                args=args.args,
-                wdir=args.wdir,
-                current_namespace=args.current_namespace,
-                exec_fun=debug_exec,
-                post_mortem=args.post_mortem,
-                context_globals=args.namespace,
-                context_locals=local_ns,
-            )
-
-
-
-
+    )
 
 
 
