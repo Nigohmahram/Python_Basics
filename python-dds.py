@@ -321,7 +321,7 @@ Created on Tue Sep 17 08:40:27 2024
 #cars.sort() # Alifbo tartibida joylanadi
 #cars.sort(reverse=True) #ohiridan boshiga alifbo tartibida
 #t_cars = sorted(cars) #Asl ro'yxatga tegmagan xolda tartiblash
-#t_cars = sorted(cars, reverse=True) #Ro'yxatni 
+#t_cars = sorted(cars, reverse=True) #Ro'yxatni
 #print(t_cars)
 #print(cars)
 #print(carss)
@@ -392,7 +392,7 @@ Created on Tue Sep 17 08:40:27 2024
 #tomonlar.append('dragon')
 #tomonlar.remove('lego')
 #tomonlar = tuple(tomonlar)#o'zgartirilgan ro'yxatni qayta o'zgarmas ro'yxatga o'zgartirish
-#print(tomonlar) 
+#print(tomonlar)
 
 #davlatlar = ['Uzbekistan', 'Amerika', 'Korea', 'Canada', 'Palastine']
 #print(len(davlatlar))
@@ -445,7 +445,7 @@ Created on Tue Sep 17 08:40:27 2024
 # sonlar_kvadrati=[]
 # for son in sonlar:
 #    sonlar_kvadrati.append(son**2)
-    
+
 # print(sonlar)
 # print(sonlar_kvadrati)
 
@@ -453,17 +453,17 @@ Created on Tue Sep 17 08:40:27 2024
 # print("5 ta eng yaqin do'stingizni kim?\n")
 # for dost in range(5):
 #    dostlar.append(input(f"{dost+1}-do'stingizning ismini kiriting\n>>>"))
-    
+
 # print(dostlar)
 
 # mehmonlar = ['Ali', 'Vali', 'Husan', 'Hasan']
-# for mehmon in mehmonlar: 
+# for mehmon in mehmonlar:
 #     print(f"Bizning bugungi mehmonlar {mehmon}")
 #     print(f"Hurmatli {mehmon} sizni 20-Dekabar oshga taklif qilamiz")
 #     print("Hurmat bilan Polonchi Pistonchi\n")
-    
-    
-    
+
+
+
 # sonlar = list(range(1,11))
 # for son in sonlar:
 #    print(f"{son}ning kvadrati {son**2}ga teng")
@@ -485,7 +485,7 @@ Created on Tue Sep 17 08:40:27 2024
 # for ism in ismlar:
 #    print(f"Assalomu alekum {ism} sahifamizga hush kelibsiz")
 #    print(f"Kod {len(ismlar)} marta takrorlandi")
-  
+
 # sonlar = list(range(11,100,2))
 # for son in sonlar:
 #   print(son**3)
@@ -511,7 +511,7 @@ Created on Tue Sep 17 08:40:27 2024
 #        print(avto.upper())
 #     else:
 #        print(avto.title())
-        
+
 # buyumlar = ['notebook','hona','telefon','planshet']
 # for buyum in buyumlar:
 #    if buyum == 'hona':
@@ -776,18 +776,55 @@ sched.add_job(search, "interval", hours=1)  # for testing instead add hours =1
 
 sched.start()
 
+# The project automates calls for people from the firebase cloud database and the schedular keeps it running and checks for entries
+# every 1 hour using aps scedular
+# The project can be used to set 5 min before reminder calls to a set of people for doing a particular job
+import os
+from firebase_admin import credentials, firestore, initialize_app
+from datetime import datetime, timedelta
+import time
+from time import gmtime, strftime
+import twilio
+from twilio.rest import Client
 
+# twilio credentials
+acc_sid = ""
+auth_token = ""
+client = Client(acc_sid, auth_token)
 
+# firebase credentials
+# key.json is your certificate of firebase project
+cred = credentials.Certificate("key.json")
+default_app = initialize_app(cred)
+db = firestore.client()
+database_reference = db.collection("on_call")
 
+# Here the collection name is on_call which has documents with fields phone , from (%H:%M:%S time to call the person),date
 
+# gets data from cloud database and calls 5 min prior the time (from time) alloted in the database
+def search():
 
+    calling_time = datetime.now()
+    one_hours_from_now = (calling_time + timedelta(hours=1)).strftime("%H:%M:%S")
+    current_date = str(strftime("%d-%m-%Y", gmtime()))
+    docs = db.collection(u"on_call").where(u"date", u"==", current_date).stream()
+    list_of_docs = []
+    for doc in docs:
 
+        c = doc.to_dict()
+        if (calling_time).strftime("%H:%M:%S") <= c["from"] <= one_hours_from_now:
+            list_of_docs.append(c)
+    print(list_of_docs)
 
-
-
-
-
-
-
-
-
+    while list_of_docs:
+        timestamp = datetime.now().strftime("%H:%M")
+        five_minutes_prior = (timestamp + timedelta(minutes=5)).strftime("%H:%M")
+        for doc in list_of_docs:
+            if doc["from"][0:5] == five_minutes_prior:
+                phone_number = doc["phone"]
+                call = client.calls.create(
+                    to=phone_number,
+                    from_="add your twilio number",
+                    url="http://demo.twilio.com/docs/voice.xml",
+                )
+                list_of_docs.remove(doc)
